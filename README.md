@@ -1,7 +1,7 @@
 # PromptBox · 纯 Web 版 AI 提示词模板管理器
 
 > 一个本地优先、零后端、可直接部署到 **Cloudflare Pages** 的 AI 提示词 / 模板管理工具。
-> 支持变量占位、分类管理、实时预览、JSON 导入导出，以及通过 **WebDAV** 把数据同步到任意私有云盘。
+> 支持变量占位、分类管理、实时预览、JSON 导入导出，以及通过 **WebDAV** 把数据同步到任意私有云盘或服务器。
 
 [![Deploy to Cloudflare Pages](https://img.shields.io/badge/Deploy%20to-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare)](https://deploy.workers.cloudflare.com/?repository=https://github.com/zrtnb6/promptbox-web)
 
