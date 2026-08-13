@@ -42,19 +42,7 @@
 
 本项目是**纯静态站点**，部署到 Cloudflare Pages 后，其他用户访问即用，无需任何服务器。
 
-### 方式一：一键部署按钮（推荐）
-
-点击上方绿色按钮，或在浏览器打开：
-
-```
-https://deploy.workers.cloudflare.com/?repository=https://github.com/zrtnb6/promptbox-web
-```
-
-登录你的 Cloudflare 账号后，会自动带入本仓库地址，按提示确认即可。
-
-> ⚠️ 若打开后提示 403 / 打不开，是因为尚未登录 Cloudflare：请先访问 https://dash.cloudflare.com/ 登录账号，再重新点击部署链接即可。
-
-### 方式二：手动「粘贴项目链接」部署（最直观）
+### 方式一：手动「粘贴项目链接」部署（最直观）
 
 这正是「把项目链接粘贴到 Cloudflare 即可一键部署」的方式：
 
@@ -77,7 +65,7 @@ https://deploy.workers.cloudflare.com/?repository=https://github.com/zrtnb6/prom
 
 > 💡 之后你（或他人）只要 `git push` 更新本仓库，Cloudflare 会自动重新构建部署，无需任何手动操作。
 
-### 方式三：使用 Wrangler 命令行部署
+### 方式二：使用 Wrangler 命令行部署
 
 ```bash
 # 安装依赖
