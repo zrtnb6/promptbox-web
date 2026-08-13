@@ -114,7 +114,7 @@ npm run preview
 | 用户名 | WebDAV 账号 | `yourname` |
 | 密码 | WebDAV 密码 | `********` |
 | 远端文件路径 | 云端保存的文件路径 | `/promptbox/promptbox.json` |
-| 远端历史版本路径 | 云端保存的历史版本 | `/promptbox/versions` |
+| 远端历史版本路径 | 云端保存的历史版本 | `/promptbox/versions/` |
 
 开启后会：
 - **上传**：本机 → 云端（同时写入 `versions/` 历史快照）。
