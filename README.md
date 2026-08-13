@@ -110,10 +110,11 @@ npm run preview
 
 | 字段 | 说明 | 示例 |
 | --- | --- | --- |
-| 服务器地址 | WebDAV 根地址 | `https://data.cstcloud.cn/dav` |
+| 服务器地址 | WebDAV 根地址 | `https://dav.example.com` |
 | 用户名 | WebDAV 账号 | `yourname` |
 | 密码 | WebDAV 密码 | `********` |
 | 远端文件路径 | 云端保存的文件路径 | `/promptbox/promptbox.json` |
+| 远端历史版本路径 | 云端保存的历史版本 | `/promptbox/versions` |
 
 开启后会：
 - **上传**：本机 → 云端（同时写入 `versions/` 历史快照）。
