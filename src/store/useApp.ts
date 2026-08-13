@@ -370,7 +370,7 @@ export const useApp = create<AppState>()((set, get) => ({
         t.id === id ? { ...t, lastUsedAt: Date.now(), useCount: t.useCount + 1 } : t,
       ),
     }));
-    scheduleSave(get);
+    persistOnly(get);
   },
 
   addCategory: (name) => {
