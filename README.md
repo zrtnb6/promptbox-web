@@ -27,13 +27,19 @@
 
 ## 🖼 截图
 
-![主界面](screenshots/home.png)
-
-![编辑页](screenshots/edit.png)
-
-![变量定义](screenshots/variable-definition.png)
-
-![WebDav](screenshots/webdav.png)
+<div align="center">
+  <p><strong>主界面</strong></p>
+  <img src="./screenshots/home.png" width="80%" alt="主界面"/>
+  <br/><br/>
+  <p><strong>编辑页</strong></p>
+  <img src="./screenshots/edit.png" width="80%" alt="编辑页"/>
+  <br/><br/>
+  <p><strong>变量定义</strong></p>
+  <img src="./screenshots/variable-definition.png" width="80%" alt="变量定义"/>
+  <br/><br/>
+  <p><strong>WebDAV 同步</strong></p>
+  <img src="./screenshots/webdav.png" width="80%" alt="WebDAV 同步"/>
+</div>
 
 ## 🛠 技术栈
 
