@@ -42,9 +42,7 @@
 
 本项目是**纯静态站点**，部署到 Cloudflare Pages 后，其他用户访问即用，无需任何服务器。
 
-### 方式一：手动「粘贴项目链接」部署
-
-这正是「把项目链接粘贴到 Cloudflare 即可一键部署」的方式：
+### 方式一：手动Fork本项目部署
 
 1. Fork本项目
 2. 登录 [Cloudflare 控制台](https://dash.cloudflare.com/)。
