@@ -46,14 +46,11 @@
 
 这正是「把项目链接粘贴到 Cloudflare 即可一键部署」的方式：
 
-1. 登录 [Cloudflare 控制台](https://dash.cloudflare.com/)。
-2. 左侧进入 **Workers 和 Pages** → 点击 **创建** → 选择 **Pages** 标签页。
-3. 选择 **连接到 Git**（或「使用直接上传」也可，但 Git 方式可自动持续部署）。
-4. 授权 GitHub 后，在仓库列表里粘贴 / 选择本仓库链接：
-   ```
-   https://github.com/zrtnb6/promptbox-web
-   ```
-5. **构建设置**保持如下（也可直接让 CF 自动识别 Vite）：
+1. Fork本项目
+2. 登录 [Cloudflare 控制台](https://dash.cloudflare.com/)。
+3. 左侧进入 **Workers 和 Pages** → 点击 **创建应用程序** → 选择 **部署 Pages** 。
+4. 选择 **导入现有 Git 存储库**（或「直接拖放上传」也可，但 Git 方式可自动持续部署）。
+5. **构建设置**保持如下：
    | 项目 | 值 |
    | --- | --- |
    | 框架预设 | `Vite` |
