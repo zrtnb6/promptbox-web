@@ -315,7 +315,7 @@ export function TemplateEditor({ template }: Props) {
             {VARIABLE_TYPES.map((meta) => (
               <button
                 key={meta.type}
-                className="btn btn--sm"
+                className="btn btn--sm add-var-btn"
                 onClick={() => addVariable(meta.type)}
                 title={meta.hint}
               >

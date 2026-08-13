@@ -58,7 +58,7 @@ export function VariableEditor({
           <Icon
             name={(VARIABLE_TYPES.find((t) => t.type === variable.type)?.icon ?? 'text') as IconName}
             size={11}
-          />{' '}
+          />
           {typeLabel(variable.type)}
         </span>
         <button

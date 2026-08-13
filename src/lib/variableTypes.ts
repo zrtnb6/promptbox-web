@@ -16,8 +16,8 @@ export const VARIABLE_TYPES: VariableTypeMeta[] = [
   { type: 'select', label: '下拉单选', hint: '从预设选项里挑一个', icon: 'select' },
   { type: 'multiselect', label: '多选', hint: '可同时选中多个并自动拼接', icon: 'multiselect' },
   { type: 'toggle', label: '开关', hint: '开/关分别插入不同文本，可配合条件块', icon: 'toggle' },
-  { type: 'number', label: '数字', hint: '带范围与步长，可加单位', icon: 'number' },
-  { type: 'date', label: '日期', hint: '日期选择器，可自定义格式', icon: 'date' },
+  { type: 'number', label: '数字', hint: '带范围与步长，可加单位', icon: 'hash' },
+  { type: 'date', label: '日期', hint: '日期选择器，可自定义格式', icon: 'calendar' },
 ];
 
 export const VARIABLE_TYPE_MAP: Record<VariableType, VariableTypeMeta> = VARIABLE_TYPES.reduce(

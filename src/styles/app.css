@@ -1091,6 +1091,9 @@ kbd {
 }
 
 .var-card__type {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-size: var(--fs-xs);
   color: var(--text-muted);
   padding: 1px 6px;
@@ -1157,6 +1160,16 @@ kbd {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-1);
+}
+
+.add-var-menu .add-var-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: 6px;
 }
 
 /* ==========================================================================
