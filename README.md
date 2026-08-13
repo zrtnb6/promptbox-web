@@ -25,6 +25,16 @@
 
 ---
 
+## 🖼 截图
+
+![主界面](screenshots/home.png)
+
+![编辑页](screenshots/edit.png)
+
+![变量定义](screenshots/variable-definition.png)
+
+![WebDav](screenshots/webdav.png)
+
 ## 🛠 技术栈
 
 | 层 | 技术 |
