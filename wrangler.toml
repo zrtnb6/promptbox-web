@@ -1,0 +1,5 @@
+# Cloudflare Pages 配置
+# 用途：配合 `npx wrangler pages deploy dist` 命令行部署；
+#       或在 Cloudflare Pages 后台「连接到 Git」时自动识别。
+name = "promptbox"
+pages_build_output_dir = "dist"

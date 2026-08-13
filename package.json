@@ -1,0 +1,25 @@
+{
+  "name": "promptbox",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "PromptBox - 纯 Web 版 AI 提示词模板管理工具，可一键部署到 Cloudflare Pages",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.0.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.1"
+  }
+}

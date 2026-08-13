@@ -1,0 +1,128 @@
+/* ==========================================================================
+   PromptBox 设计令牌
+   简约平面风：中性灰底色 + 单一强调色，1px 边框代替阴影，克制的圆角。
+   ========================================================================== */
+
+:root {
+  /* 强调色由 index.html / 设置面板注入，这里给默认值 */
+  --accent: #2563eb;
+
+  /* 字体 */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Text',
+    'Segoe UI', system-ui, 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Mono', 'SF Mono', Consolas, 'Liberation Mono',
+    Menlo, monospace;
+
+  /* 字号 —— 桌面端密度 */
+  --fs-xs: 11px;
+  --fs-sm: 12px;
+  --fs-base: 13px;
+  --fs-md: 14px;
+  --fs-lg: 16px;
+  --fs-xl: 19px;
+
+  /* 间距节奏 4px 基准 */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+
+  /* 圆角：平面风，克制 */
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 8px;
+  --r-full: 999px;
+
+  /* 语义别名（组件引用兼容） */
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-full: var(--r-full);
+  --surface: var(--bg-panel);
+  --surface-2: var(--bg-subtle);
+  --bg-tertiary: var(--bg-active);
+
+  /* 布局尺寸（可被拖拽调整覆盖） */
+  --w-sidebar: 232px;
+  --w-list: 320px;
+  --h-topbar: 44px;
+
+  /* 动效：只做必要的微交互 */
+  --t-fast: 110ms ease;
+  --t-base: 170ms cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* ------------------------------------------------------------------ 浅色 */
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg-app: #f6f7f9; /* 应用底色（中性灰） */
+  --bg-panel: #ffffff; /* 面板/卡片 */
+  --bg-subtle: #f1f2f4; /* 次级区块 */
+  --bg-hover: #eceef1;
+  --bg-active: #e4e7ea;
+  --bg-input: #ffffff;
+  --bg-code: #f7f8fa;
+
+  --border: #e3e5e9; /* 常规分隔线 */
+  --border-strong: #d3d6dc; /* 输入框等需要更明确边界 */
+
+  --text: #16181d; /* 主文本 */
+  --text-secondary: #4b5058; /* 次要文本 */
+  --text-muted: #868c96; /* 弱化/占位 */
+  --text-inverse: #ffffff;
+
+  --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent);
+  --accent-soft-strong: color-mix(in srgb, var(--accent) 16%, transparent);
+  --accent-text: var(--accent);
+
+  --danger: #dc2626;
+  --danger-soft: color-mix(in srgb, #dc2626 10%, transparent);
+  --warning: #b45309;
+  --warning-soft: color-mix(in srgb, #f59e0b 14%, transparent);
+  --success: #15803d;
+
+  /* 平面风只在浮层上用极淡的投影 */
+  --shadow-pop: 0 4px 16px rgba(16, 18, 22, 0.1), 0 0 0 1px var(--border);
+  --shadow-modal: 0 12px 40px rgba(16, 18, 22, 0.16);
+  --overlay: rgba(24, 26, 30, 0.32);
+}
+
+/* ------------------------------------------------------------------ 深色 */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-app: #16181c;
+  --bg-panel: #1d2025;
+  --bg-subtle: #22262c;
+  --bg-hover: #282d34;
+  --bg-active: #30363e;
+  --bg-input: #22262c;
+  --bg-code: #191c21;
+
+  --border: #2b3038;
+  --border-strong: #3a414b;
+
+  --text: #e8eaed;
+  --text-secondary: #b0b6bf;
+  --text-muted: #7d858f;
+  --text-inverse: #ffffff;
+
+  --accent-soft: color-mix(in srgb, var(--accent) 18%, transparent);
+  --accent-soft-strong: color-mix(in srgb, var(--accent) 26%, transparent);
+  --accent-text: color-mix(in srgb, var(--accent) 78%, #ffffff);
+
+  --danger: #f87171;
+  --danger-soft: color-mix(in srgb, #f87171 15%, transparent);
+  --warning: #fbbf24;
+  --warning-soft: color-mix(in srgb, #fbbf24 16%, transparent);
+  --success: #4ade80;
+
+  --shadow-pop: 0 4px 18px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--border);
+  --shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.55);
+  --overlay: rgba(0, 0, 0, 0.55);
+}

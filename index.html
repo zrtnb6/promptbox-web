@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>PromptBox</title>
+    <script>
+      // 在首帧之前确定主题，避免深色模式下的白屏闪烁
+      (function () {
+        try {
+          var raw = localStorage.getItem('promptbox.ui');
+          var pref = 'system';
+          var accent = '#2563eb';
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (parsed && parsed.theme) pref = parsed.theme;
+            if (parsed && parsed.accent) accent = parsed.accent;
+          }
+          var dark =
+            pref === 'dark' ||
+            (pref === 'system' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+          document.documentElement.style.setProperty('--accent', accent);
+        } catch (e) {
+          /* 忽略：使用默认浅色 */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
