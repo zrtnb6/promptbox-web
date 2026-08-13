@@ -3,7 +3,7 @@
 > 一个本地优先、零后端、可直接部署到 **Cloudflare Pages** 的 AI 提示词 / 模板管理工具。
 > 支持变量占位、分类管理、实时预览、JSON 导入导出，以及通过 **WebDAV** 把数据同步到任意私有云盘。
 
-[![Deploy to Cloudflare Pages](https://img.shields.io/badge/Deploy%20to-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare)](https://dash.cloudflare.com/?to=/:account/workers-and-pages/create/deploy-to-pages&repository=https://github.com/zrtnb6/promptbox-web&branch=main)
+[![Deploy to Cloudflare Pages](https://img.shields.io/badge/Deploy%20to-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare)](https://deploy.workers.cloudflare.com/?repository=https://github.com/zrtnb6/promptbox-web)
 
 ---
 
@@ -47,10 +47,12 @@
 点击上方绿色按钮，或在浏览器打开：
 
 ```
-https://dash.cloudflare.com/?to=/:account/workers-and-pages/create/deploy-to-pages&repository=https://github.com/zrtnb6/promptbox-web&branch=main
+https://deploy.workers.cloudflare.com/?repository=https://github.com/zrtnb6/promptbox-web
 ```
 
 登录你的 Cloudflare 账号后，会自动带入本仓库地址，按提示确认即可。
+
+> ⚠️ 若打开后提示 403 / 打不开，是因为尚未登录 Cloudflare：请先访问 https://dash.cloudflare.com/ 登录账号，再重新点击部署链接即可。
 
 ### 方式二：手动「粘贴项目链接」部署（最直观）
 
