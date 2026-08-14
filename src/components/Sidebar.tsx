@@ -58,7 +58,7 @@ export function Sidebar() {
           <div className="nav-section__title">
             <span>分类</span>
             <button
-              className="icon-btn icon-btn--sm"
+              className="icon-btn icon-btn--sm cat-add-btn"
               title="新建分类"
               onClick={() => {
                 const id = addCategory('新分类');

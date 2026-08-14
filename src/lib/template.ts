@@ -238,6 +238,21 @@ export function extractKeys(content: string): string[] {
   return order;
 }
 
+/**
+ * 变量改名时同步重写正文里的 token。
+ * 覆盖 {{oldKey}}、{{#if oldKey}}、{{#unless oldKey}}（允许内部空格），
+ * 其它变量的 token、{{else}}、{{/if}} 一律原样保留。
+ */
+export function renameKeyInContent(content: string, oldKey: string, newKey: string): string {
+  if (!content || !oldKey || !newKey || oldKey === newKey) return content;
+  const re = new RegExp(TOKEN_RE.source, TOKEN_RE.flags);
+  return content.replace(re, (full, openTag, condKey, _else, _close, varKey) => {
+    if (openTag && condKey === oldKey) return `{{${openTag} ${newKey}}}`;
+    if (varKey === oldKey) return `{{${newKey}}}`;
+    return full;
+  });
+}
+
 /** 正文里用到但没定义的变量 */
 export function findUndefinedKeys(content: string, variables: TemplateVariable[]): string[] {
   const defined = new Set(variables.map((v) => v.key));

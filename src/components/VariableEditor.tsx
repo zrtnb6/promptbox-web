@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import type { TemplateVariable, VariableType } from '../types';
 import { slugifyKey, uid } from '../lib/id';
 import { VARIABLE_TYPES, migrateVariableType, newOption, typeLabel } from '../lib/variableTypes';
@@ -30,6 +31,25 @@ export function VariableEditor({
   onMove,
 }: Props) {
   const patch = (p: Partial<TemplateVariable>) => onChange({ ...variable, ...p });
+
+  /**
+   * 变量名单独用草稿态：改名要连带重写正文里的 {{旧名}}，
+   * 所以不能每敲一个字就提交一次，统一在失焦 / 回车时提交。
+   */
+  const [keyDraft, setKeyDraft] = useState(variable.key);
+  useEffect(() => setKeyDraft(variable.key), [variable.id, variable.key]);
+
+  const commitKey = () => {
+    const nextKey = slugifyKey(keyDraft);
+    if (!nextKey || nextKey === variable.key) {
+      setKeyDraft(variable.key); // 空名或没变化：回滚输入框显示
+      return;
+    }
+    patch({ key: nextKey });
+  };
+
+  const keyPreview = slugifyKey(keyDraft) || variable.key;
+  const keyDirty = keyPreview !== variable.key;
 
   const changeType = (type: VariableType) => {
     if (type === variable.type) return;
@@ -97,12 +117,26 @@ export function VariableEditor({
               <input
                 className="input"
                 style={{ fontFamily: 'var(--font-mono)' }}
-                value={variable.key}
-                onChange={(e) => patch({ key: e.target.value })}
-                onBlur={(e) => patch({ key: slugifyKey(e.target.value) })}
+                value={keyDraft}
+                onChange={(e) => setKeyDraft(e.target.value)}
+                onBlur={commitKey}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    e.currentTarget.blur();
+                  } else if (e.key === 'Escape') {
+                    setKeyDraft(variable.key);
+                    e.currentTarget.blur();
+                  }
+                }}
               />
               <div className="field__hint">
-                正文中用 <code className="code-hint">{`{{${variable.key}}}`}</code> 引用，也是该变量在表单里的显示名
+                正文中用 <code className="code-hint">{`{{${keyPreview}}}`}</code> 引用，也是该变量在表单里的显示名
+                {keyDirty && (
+                  <span style={{ color: 'var(--accent-text)' }}>
+                    （回车或失焦后生效，正文里的引用会自动跟着改名）
+                  </span>
+                )}
               </div>
             </div>
           </div>

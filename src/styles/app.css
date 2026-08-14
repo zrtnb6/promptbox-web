@@ -623,12 +623,15 @@ ul {
   font-size: var(--fs-sm);
 }
 
-/* 仅图标按钮 */
+/* 仅图标按钮：用 flex 并清零 padding，避免 <button> UA 默认 padding
+   在 inline-grid/inline-flex 下把图标挤偏（表现为灰色 hover 背景相对图标偏左/偏上）。 */
 .icon-btn {
-  display: inline-grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 26px;
   height: 26px;
+  padding: 0;
   border: none;
   border-radius: var(--r-md);
   background: transparent;
@@ -659,6 +662,16 @@ ul {
 .icon-btn--sm {
   width: 20px;
   height: 20px;
+}
+
+/* 分类标题栏的「新建分类」+号：
+   标题栏右内边距 8px，下方 cat-row 行尾操作区右内边距 2px，
+   要让 +号 与删除按钮右边缘对齐，需要向左（容器内）拉回这 6px。 */
+.cat-add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -6px;
 }
 
 /* 输入 */

@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import type { PromptTemplate, TemplateVariable, VariableType } from '../types';
 import { useApp } from '../store/useApp';
-import { findUndefinedKeys, findUnusedVariables } from '../lib/template';
+import { findUndefinedKeys, findUnusedVariables, renameKeyInContent } from '../lib/template';
 import { VARIABLE_TYPES, createVariable } from '../lib/variableTypes';
 import { uid } from '../lib/id';
 import { Icon, type IconName } from './Icon';
@@ -80,11 +80,21 @@ export function TemplateEditor({ template }: Props) {
     setExpanded((prev) => new Set(prev).add(fresh.id));
   };
 
-  const patchVariable = (next: TemplateVariable) =>
-    updateVariables(
-      template.id,
-      template.variables.map((v) => (v.id === next.id ? next : v)),
-    );
+  /**
+   * 更新单个变量定义。
+   * 若变量名（key）变了，同步把正文里的 {{旧名}} / {{#if 旧名}} 一起改掉，
+   * 否则正文里的 token 会变成没人认领的孤儿。
+   */
+  const patchVariable = (next: TemplateVariable) => {
+    const prev = template.variables.find((v) => v.id === next.id);
+    const variables = template.variables.map((v) => (v.id === next.id ? next : v));
+    if (prev && prev.key && next.key && prev.key !== next.key) {
+      const content = renameKeyInContent(template.content, prev.key, next.key);
+      updateTemplate(template.id, { variables, content });
+      return;
+    }
+    updateVariables(template.id, variables);
+  };
 
   const removeVariable = (id: string) =>
     updateVariables(
