@@ -106,7 +106,7 @@ export function TemplateRunner({ template, onCopied, compact }: Props) {
           template.variables.map((variable, index) => (
             <div className="field" key={variable.id}>
               <label className="field__label" htmlFor={`field-${variable.id}`}>
-                {variable.label || variable.key}
+                {variable.key}
                 {variable.required && <span className="required-mark">*</span>}
                 <code
                   className="code-hint"
@@ -171,7 +171,7 @@ export function TemplateRunner({ template, onCopied, compact }: Props) {
         <div className="preview__foot">
           <span className="preview__stats">
             {finalText.length} 字符 · {finalText.split('\n').length} 行
-            {missing.length > 0 && ` · 未填：${missing.map((v) => v.label).join('、')}`}
+            {missing.length > 0 && ` · 未填：${missing.map((v) => v.key).join('、')}`}
           </span>
           <button className="btn btn--primary btn--lg" onClick={handleCopy}>
             <Icon name="copy" size={15} />

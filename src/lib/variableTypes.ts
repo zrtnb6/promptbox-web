@@ -37,7 +37,7 @@ export function createVariable(type: VariableType = 'text', index = 1): Template
   const base: TemplateVariable = {
     id: uid('var'),
     key: `var${index}`,
-    label: `变量 ${index}`,
+    label: `var${index}`,
     type,
     required: false,
   };

@@ -42,6 +42,7 @@ const PATHS: Record<string, string[]> = {
   ],
   chevronDown: ['m6 9 6 6 6-6'],
   chevronRight: ['m9 18 6-6-6-6'],
+  chevronLeft: ['m15 18 -6-6 6-6'],
   x: ['M18 6 6 18', 'M6 6l12 12'],
   check: ['M20 6 9 17l-5-5'],
   panelLeft: [

@@ -186,7 +186,7 @@ export function renderSegments(
         }
         const text = formatValue(variable, values[node.key] ?? null);
         if (text === '') {
-          emit({ kind: 'empty', text: '', key: node.key, label: variable.label || variable.key });
+          emit({ kind: 'empty', text: '', key: node.key, label: variable.key });
         } else {
           emit({ kind: 'value', text, key: node.key });
         }

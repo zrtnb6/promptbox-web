@@ -188,7 +188,7 @@ function sanitizeTemplate(raw: any): PromptTemplate | null {
           .map((v: any) => ({
             ...v,
             id: typeof v.id === 'string' && v.id ? v.id : uid('var'),
-            label: typeof v.label === 'string' && v.label ? v.label : v.key,
+            label: v.key,
             type: v.type ?? 'text',
           }))
       : [],

@@ -1093,6 +1093,7 @@ kbd {
 .var-card__type {
   display: flex;
   align-items: center;
+  margin-left: auto;
   gap: 4px;
   font-size: var(--fs-xs);
   color: var(--text-muted);

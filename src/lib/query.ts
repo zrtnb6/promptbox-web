@@ -31,7 +31,7 @@ function matchesQuery(tpl: PromptTemplate, q: string): boolean {
     tpl.content.toLowerCase().includes(needle) ||
     tpl.tags.some((t) => t.toLowerCase().includes(needle)) ||
     tpl.variables.some(
-      (v) => v.label.toLowerCase().includes(needle) || v.key.toLowerCase().includes(needle),
+      (v) => v.key.toLowerCase().includes(needle),
     )
   );
 }

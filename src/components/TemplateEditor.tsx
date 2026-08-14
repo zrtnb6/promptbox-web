@@ -195,7 +195,7 @@ export function TemplateEditor({ template }: Props) {
                     key={v.id}
                     className="btn btn--sm"
                     style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)' }}
-                    title={`插入 ${v.label}`}
+                    title={`插入 ${v.key}`}
                     onClick={() => insertAtCursor(`{{${v.key}}}`)}
                   >
                     {v.key}

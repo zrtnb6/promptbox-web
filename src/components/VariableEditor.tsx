@@ -50,10 +50,7 @@ export function VariableEditor({
         <code className="var-card__key" style={duplicateKey ? { background: 'var(--danger-soft)', color: 'var(--danger)' } : undefined}>
           {`{{${variable.key}}}`}
         </code>
-        <span className="var-card__label">
-          {variable.label || '未命名变量'}
-          {variable.required && <span className="required-mark"> *</span>}
-        </span>
+        {variable.required && <span className="required-mark"> *</span>}
         <span className="var-card__type">
           <Icon
             name={(VARIABLE_TYPES.find((t) => t.type === variable.type)?.icon ?? 'text') as IconName}
@@ -85,16 +82,16 @@ export function VariableEditor({
           title={expanded ? '收起' : '展开配置'}
           onClick={onToggleExpand}
         >
-          <Icon name={expanded ? 'chevronDown' : 'chevronRight'} size={14} />
+          <Icon name={expanded ? 'chevronDown' : 'chevronLeft'} size={14} />
         </button>
       </div>
 
       {expanded && (
         <div className="var-card__body">
           <div className="field-row">
-            <div className="field">
+            <div className="field" style={{ flex: 1 }}>
               <label className="field__label">
-                变量名 (key)
+                变量名
                 {duplicateKey && <span className="required-mark">重复！</span>}
               </label>
               <input
@@ -105,17 +102,8 @@ export function VariableEditor({
                 onBlur={(e) => patch({ key: slugifyKey(e.target.value) })}
               />
               <div className="field__hint">
-                正文中用 <code className="code-hint">{`{{${variable.key}}}`}</code> 引用
+                正文中用 <code className="code-hint">{`{{${variable.key}}}`}</code> 引用，也是该变量在表单里的显示名
               </div>
-            </div>
-            <div className="field">
-              <label className="field__label">显示名称</label>
-              <input
-                className="input"
-                value={variable.label}
-                onChange={(e) => patch({ label: e.target.value })}
-                placeholder="表单里显示的标签"
-              />
             </div>
           </div>
 
