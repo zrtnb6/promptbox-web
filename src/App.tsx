@@ -385,18 +385,7 @@ function QuickUseModal() {
       wide
       flush
       onClose={closeQuickUse}
-      title={
-        <>
-          <Icon name="play" size={14} />
-          {template.title}
-        </>
-      }
-      headerExtra={
-        <span className="badge" title="填写变量后 Ctrl+Enter 直接复制">
-          <Icon name="keyboard" size={11} />
-          Ctrl+↵ 复制
-        </span>
-      }
+      title={template.title}
     >
       <div style={{ height: 'min(560px, 72vh)', containerType: 'inline-size' }}>
         <TemplateRunner
