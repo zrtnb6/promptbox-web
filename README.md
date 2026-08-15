@@ -144,7 +144,7 @@ npm run preview
 - 需要在你的 WebDAV 服务端放开 CORS：允许来源填你的站点域名（或 `*` 仅测试用）；
 - 并允许以下请求方法与请求头：`GET`、`PUT`、`PROPFIND`、`DELETE`，以及请求头 `Authorization`、`Depth`、`Content-Type`。
 
-> 桌面端 / 原生 App 不受此限制。若你的网盘不支持 CORS，可改用「JSON 导出 / 导入」手动备份，或把数据放在同源代理后面。
+> 若你的网盘不支持 CORS，可改用「JSON 导出 / 导入」手动备份，或把数据放在同源代理后面。
 
 ---
 

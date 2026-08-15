@@ -23,7 +23,7 @@ body {
   background: var(--bg-app);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow: hidden; /* 桌面应用：由内部面板各自滚动 */
+  overflow: hidden; /* 由内部面板各自滚动 */
 }
 
 button,
@@ -1663,7 +1663,7 @@ kbd {
   align-self: flex-start;
 }
 
-/* 历史版本：自定义下拉（原生 select 在部分 WebView 弹层受限、不可滚动） */
+/* 历史版本：自定义下拉（原生 select 在部分弹层受限、不可滚动） */
 .version-select {
   position: relative;
   width: 100%;

@@ -104,7 +104,7 @@ export interface Settings {
 
 /**
  * WebDAV 同步配置。
- * 注意：账号密码仅保存在本机（浏览器 localStorage / 桌面本地文件），不会上传、也不会进入同步文件。
+ * 注意：账号密码仅保存在浏览器 localStorage，不会上传、也不会进入同步文件。
  */
 export interface SyncConfig {
   enabled: boolean;

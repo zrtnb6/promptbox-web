@@ -1,5 +1,5 @@
 /**
- * WebDAV 协议层（纯 fetch 实现，浏览器 / 桌面 WebView 通用）
+ * WebDAV 协议层（纯浏览器 fetch 实现）
  *
  * 支持的方法：PROPFIND（探测存在 + 取 etag）、GET、PUT（If-Match 乐观并发）、
  * MKCOL（建目录）、OPTIONS（测连通）。使用 Basic Auth（UTF-8 安全 base64）。
