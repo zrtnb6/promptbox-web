@@ -2,17 +2,12 @@
  * 存储层（纯 Web 版）
  *
  * 数据保存在浏览器 localStorage，并支持 JSON 导入 / 导出、WebDAV 同步。
- * 桌面端（Tauri）相关逻辑不在此仓库内，本仓库仅提供 Web 服务。
  */
 
 import type { AppData } from '../types';
 
 const LS_DATA_KEY = 'promptbox.data';
 const LS_UI_KEY = 'promptbox.ui';
-
-/** 纯 Web 版始终运行在浏览器环境 */
-export const isDesktop = false;
-export const platformName = 'browser';
 
 // ------------------------------------------------------------------ 主数据
 

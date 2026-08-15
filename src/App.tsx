@@ -458,7 +458,7 @@ export function App() {
         e.preventDefault();
         setMode('edit');
       } else if (key === 'p' && e.shiftKey) {
-        // 桌面端由 Rust 侧注册全局快捷键；这里让窗口内按下也能唤起弹窗
+        // Shift+P：在 Web 界面内唤起「快速使用」弹窗
         e.preventDefault();
         openQuickUse();
       }

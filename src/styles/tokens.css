@@ -13,7 +13,7 @@
   --font-mono: 'JetBrains Mono', 'Cascadia Mono', 'SF Mono', Consolas, 'Liberation Mono',
     Menlo, monospace;
 
-  /* 字号 —— 桌面端密度 */
+  /* 字号梯度 */
   --fs-xs: 11px;
   --fs-sm: 12px;
   --fs-base: 13px;
