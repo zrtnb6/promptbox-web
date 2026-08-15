@@ -376,7 +376,6 @@ function DetailPane() {
 function QuickUseModal() {
   const template = useSelectedTemplate();
   const closeQuickUse = useApp((s) => s.closeQuickUse);
-  const hideAfterCopy = useApp((s) => s.settings.hideAfterCopy);
 
   if (!template) return null;
 
@@ -391,7 +390,6 @@ function QuickUseModal() {
         <TemplateRunner
           template={template}
           compact
-          onCopied={hideAfterCopy ? closeQuickUse : undefined}
         />
       </div>
     </Modal>

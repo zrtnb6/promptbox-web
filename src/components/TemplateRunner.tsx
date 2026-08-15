@@ -6,7 +6,7 @@ import {
   renderSegments,
   type ValueMap,
 } from '../lib/template';
-import { copyText, hideWindow } from '../lib/storage';
+import { copyText } from '../lib/storage';
 import { useApp } from '../store/useApp';
 import { VariableField } from './VariableField';
 import { Icon } from './Icon';
@@ -25,7 +25,6 @@ interface Props {
 export function TemplateRunner({ template, onCopied, compact }: Props) {
   const registerUse = useApp((s) => s.registerUse);
   const notify = useApp((s) => s.notify);
-  const hideAfterCopy = useApp((s) => s.settings.hideAfterCopy);
 
   const [values, setValues] = useState<ValueMap>(() => {
     const cached = valueCache.get(template.id);
@@ -64,8 +63,7 @@ export function TemplateRunner({ template, onCopied, compact }: Props) {
     registerUse(template.id);
     notify(`已复制 ${finalText.length} 个字符到剪贴板`);
     onCopied?.();
-    if (hideAfterCopy) void hideWindow();
-  }, [finalText, notify, registerUse, template.id, onCopied, hideAfterCopy]);
+  }, [finalText, notify, registerUse, template.id, onCopied]);
 
   // Ctrl/Cmd + Enter 快速复制
   useEffect(() => {

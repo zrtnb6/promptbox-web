@@ -214,8 +214,6 @@ export function createSampleData(): AppData {
     settings: {
       theme: 'system',
       accent: '#2563eb',
-      globalShortcut: 'CmdOrCtrl+Shift+P',
-      hideAfterCopy: false,
       sync: DEFAULT_SYNC,
     },
   };

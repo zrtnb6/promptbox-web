@@ -30,8 +30,6 @@ const SCHEMA_VERSION = 1;
 const DEFAULT_SETTINGS: Settings = {
   theme: 'system',
   accent: '#2563eb',
-  globalShortcut: 'CmdOrCtrl+Shift+P',
-  hideAfterCopy: false,
   sync: DEFAULT_SYNC,
 };
 

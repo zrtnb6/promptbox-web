@@ -98,10 +98,6 @@ export interface Settings {
   theme: ThemePreference;
   /** 强调色（十六进制） */
   accent: string;
-  /** 全局快捷键，仅作展示与后续可配置化，实际注册在 Rust 侧 */
-  globalShortcut: string;
-  /** 复制后是否自动隐藏窗口（快捷键唤起场景很实用） */
-  hideAfterCopy: boolean;
   /** 云端同步配置（设备私有，不同步到远端） */
   sync: SyncConfig;
 }

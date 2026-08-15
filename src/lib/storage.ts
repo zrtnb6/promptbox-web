@@ -98,9 +98,3 @@ export async function copyText(text: string): Promise<void> {
   }
 }
 
-// ------------------------------------------------------------------ 窗口控制
-
-/** 桌面端专用：复制后隐藏应用窗口。Web 版为空实现，保持接口一致。 */
-export async function hideWindow(): Promise<void> {
-  /* no-op in browser */
-}
