@@ -44,11 +44,11 @@ export function createVariable(type: VariableType = 'text', index = 1): Template
 
   switch (type) {
     case 'select':
-      return { ...base, options: [newOption('选项 A'), newOption('选项 B')] };
+      return { ...base, options: [newOption(''), newOption('')] };
     case 'multiselect':
       return {
         ...base,
-        options: [newOption('选项 A'), newOption('选项 B'), newOption('选项 C')],
+        options: [newOption(''), newOption(''), newOption('')],
         separator: '、',
         defaultValue: [],
       };

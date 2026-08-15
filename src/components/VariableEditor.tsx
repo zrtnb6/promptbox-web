@@ -191,7 +191,7 @@ export function VariableEditor({
               ))}
               <button
                 className="btn btn--sm"
-                onClick={() => patch({ options: [...options, newOption(`选项 ${options.length + 1}`)] })}
+                onClick={() => patch({ options: [...options, newOption('')] })}
               >
                 <Icon name="plus" size={13} />
                 添加选项
