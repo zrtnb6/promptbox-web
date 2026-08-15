@@ -113,6 +113,9 @@ interface AppState {
   serialize: () => string;
   importData: (raw: string, mode: ImportMode) => { ok: boolean; message: string };
 
+  // ---- 数据管理 ----
+  clearAllData: () => void;
+
   // ---- 同步 ----
   testWebDav: () => Promise<{ ok: boolean; message: string }>;
   uploadNow: () => Promise<void>;
@@ -431,6 +434,20 @@ export const useApp = create<AppState>()((set, get) => ({
       null,
       2,
     );
+  },
+
+  clearAllData: () => {
+    set({
+      templates: [],
+      categories: [],
+      selectedId: null,
+      filter: { kind: 'all' },
+      query: '',
+      sort: 'updated',
+      mode: 'use',
+    });
+    persistOnly(get);
+    get().notify('已清空全部模板与分类', 'success');
   },
 
   importData: (raw, mode) => {

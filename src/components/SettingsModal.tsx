@@ -43,6 +43,7 @@ export function SettingsModal() {
   const dataPath = useApp((s) => s.dataPath);
   const serialize = useApp((s) => s.serialize);
   const importData = useApp((s) => s.importData);
+  const clearAllData = useApp((s) => s.clearAllData);
   const notify = useApp((s) => s.notify);
   const templates = useApp((s) => s.templates);
   const categories = useApp((s) => s.categories);
@@ -65,6 +66,7 @@ export function SettingsModal() {
   const pendingImport = useRef<{ name: string; content: string } | null>(null);
   const versionSelectRef = useRef<HTMLDivElement | null>(null);
   const [askMode, setAskMode] = useState(false);
+  const [clearAsk, setClearAsk] = useState(false);
 
   // 开启同步后自动拉取版本列表
   useEffect(() => {
@@ -562,6 +564,22 @@ export function SettingsModal() {
             </div>
           </div>
         </div>
+
+        {/* ---------------- 危险区 ---------------- */}
+        <div className="settings-row settings-row--danger">
+          <div>
+            <div className="settings-row__label">清空全部数据</div>
+            <div className="settings-row__desc">
+              删除所有模板和分类（设置保留），此操作不可恢复，建议先「导出」备份
+            </div>
+          </div>
+          <div className="settings-row__control">
+            <button className="btn btn--danger" onClick={() => setClearAsk(true)}>
+              <Icon name="trash" size={14} />
+              清空全部数据
+            </button>
+          </div>
+        </div>
       </Modal>
 
       {askMode && (
@@ -585,6 +603,27 @@ export function SettingsModal() {
               覆盖导入
             </button>
           }
+        />
+      )}
+
+      {clearAsk && (
+        <ConfirmDialog
+          title="确认清空全部数据？"
+          danger
+          message={
+            <>
+              将删除<b>全部模板和分类</b>，此操作<b>不可恢复</b>。
+              <br />
+              设置（主题、同步配置）会保留。建议先「导出」备份。
+            </>
+          }
+          confirmText="清空"
+          onConfirm={() => {
+            clearAllData();
+            setClearAsk(false);
+            close();
+          }}
+          onCancel={() => setClearAsk(false)}
         />
       )}
     </>

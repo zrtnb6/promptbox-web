@@ -1503,6 +1503,16 @@ kbd {
   word-break: break-all;
 }
 
+/* ---- 危险区：清空全部数据 ---- */
+.settings-row--danger {
+  border-top: 1px solid rgba(229, 72, 77, 0.35);
+  margin-top: 6px;
+  padding-top: 16px;
+}
+.settings-row--danger .settings-row__label {
+  color: #e5484d;
+}
+
 /* ---- 同步：堆叠式设置行 ---- */
 .settings-row--stack {
   display: flex;
