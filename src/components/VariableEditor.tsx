@@ -256,7 +256,20 @@ export function VariableEditor({
                     className="input"
                     type="number"
                     value={variable.max ?? ''}
-                    onChange={(e) => patch({ max: e.target.value === '' ? undefined : Number(e.target.value) })}
+                    onChange={(e) => {
+                      const raw = e.target.value;
+                      const max = raw === '' ? undefined : Number(raw);
+                      const next: Partial<TemplateVariable> = { max };
+                      // 若已设步长超过新的最大值，自动收回到最大值
+                      if (
+                        typeof max === 'number' &&
+                        typeof variable.step === 'number' &&
+                        variable.step > max
+                      ) {
+                        next.step = max;
+                      }
+                      patch(next);
+                    }}
                   />
                 </div>
                 <div className="field">
@@ -264,8 +277,19 @@ export function VariableEditor({
                   <input
                     className="input"
                     type="number"
+                    min={0}
+                    max={variable.max}
                     value={variable.step ?? 1}
-                    onChange={(e) => patch({ step: e.target.value === '' ? undefined : Number(e.target.value) })}
+                    onChange={(e) => {
+                      const raw = e.target.value;
+                      if (raw === '') { patch({ step: undefined }); return; }
+                      let v = Number(raw);
+                      if (Number.isNaN(v)) return;
+                      if (v < 0) v = 0;
+                      // 步长不可超过变量本身的最大值
+                      if (typeof variable.max === 'number' && v > variable.max) v = variable.max;
+                      patch({ step: v });
+                    }}
                   />
                 </div>
                 <div className="field">
