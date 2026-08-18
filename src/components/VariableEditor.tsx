@@ -297,16 +297,26 @@ export function VariableEditor({
                     value={stepDraft}
                     onChange={(e) => {
                       const raw = e.target.value;
-                      setStepDraft(raw);
-                      // 删空中：暂不提交，允许用户重新输入（store 保留或待失焦决定）
-                      if (raw === '') return;
-                      // 0 / 负数 / 非法 → 暂不提交（失焦时回写为 1）
+                      // 删空中：清空草稿，暂不提交，允许用户重新输入
+                      if (raw === '') {
+                        setStepDraft('');
+                        return;
+                      }
                       const v = Number(raw);
-                      if (!Number.isFinite(v) || v <= 0) return;
-                      // 步长不可超过变量本身的最大值
-                      let capped = v;
-                      if (typeof variable.max === 'number' && capped > variable.max) capped = variable.max;
-                      patch({ step: capped });
+                      // 0 / 负数 / 非法 → 仅保留草稿，不提交（失焦时回写为 1）
+                      if (!Number.isFinite(v) || v <= 0) {
+                        setStepDraft(raw);
+                        return;
+                      }
+                      // 步长不可超过变量本身的最大值：一旦超出则截断为最大值，
+                      // 使「已达上限后再输入的数字」无效，无法突破上限
+                      if (typeof variable.max === 'number' && v > variable.max) {
+                        setStepDraft(String(variable.max));
+                        patch({ step: variable.max });
+                        return;
+                      }
+                      setStepDraft(raw);
+                      patch({ step: v });
                     }}
                     onBlur={() => {
                       // 空 / 0 / 负数 / 非法 → 保存并回显为 1（不可为 0）
