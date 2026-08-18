@@ -39,6 +39,21 @@ export function VariableEditor({
   const [keyDraft, setKeyDraft] = useState(variable.key);
   useEffect(() => setKeyDraft(variable.key), [variable.id, variable.key]);
 
+  /**
+   * 步长用草稿态：默认显示 1（未填写即视为 1，不可为 0）；用户可删空重新输入，
+   * 失焦时若为空 / 0 / 负数则回写为 1。允许小数中间态输入（如 0.5）。
+   */
+  const [stepDraft, setStepDraft] = useState<string>(String(variable.step ?? 1));
+  useEffect(() => {
+    setStepDraft(String(variable.step ?? 1));
+  }, [variable.id, variable.step]);
+  // 存量数据若 step 为 undefined（早期版本曾清空过），挂载时统一回写为 1
+  useEffect(() => {
+    if (variable.step === undefined) patch({ step: 1 });
+    // 仅挂载时执行一次
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const commitKey = () => {
     const nextKey = slugifyKey(keyDraft);
     if (!nextKey || nextKey === variable.key) {
@@ -279,16 +294,32 @@ export function VariableEditor({
                     type="number"
                     min={0}
                     max={variable.max}
-                    value={variable.step ?? 1}
+                    value={stepDraft}
                     onChange={(e) => {
                       const raw = e.target.value;
-                      if (raw === '') { patch({ step: undefined }); return; }
-                      let v = Number(raw);
-                      if (Number.isNaN(v)) return;
-                      if (v < 0) v = 0;
+                      setStepDraft(raw);
+                      // 删空中：暂不提交，允许用户重新输入（store 保留或待失焦决定）
+                      if (raw === '') return;
+                      // 0 / 负数 / 非法 → 暂不提交（失焦时回写为 1）
+                      const v = Number(raw);
+                      if (!Number.isFinite(v) || v <= 0) return;
                       // 步长不可超过变量本身的最大值
-                      if (typeof variable.max === 'number' && v > variable.max) v = variable.max;
-                      patch({ step: v });
+                      let capped = v;
+                      if (typeof variable.max === 'number' && capped > variable.max) capped = variable.max;
+                      patch({ step: capped });
+                    }}
+                    onBlur={() => {
+                      // 空 / 0 / 负数 / 非法 → 保存并回显为 1（不可为 0）
+                      const v = stepDraft === '' ? NaN : Number(stepDraft);
+                      if (!Number.isFinite(v) || v <= 0) {
+                        patch({ step: 1 });
+                        setStepDraft('1');
+                      } else {
+                        let capped = v;
+                        if (typeof variable.max === 'number' && capped > variable.max) capped = variable.max;
+                        patch({ step: capped });
+                        setStepDraft(String(capped));
+                      }
                     }}
                   />
                 </div>

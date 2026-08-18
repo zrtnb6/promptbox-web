@@ -99,16 +99,32 @@ export function VariableField({ variable, value, onChange, autoFocus }: Props) {
     case 'number': {
       const num = typeof value === 'number' ? value : '';
       const hasRange = typeof variable.min === 'number' && typeof variable.max === 'number';
+      const stepRaw = variable.step ?? 1;
+      const safeStep = stepRaw > 0 ? stepRaw : 1;
+      const rMin = variable.min ?? 0;
+      const rMax = variable.max ?? 0;
+      // 滑块连续拖动后吸附到 step 网格；网格点超出 max 时归一化到 max，
+      // 仅当拖动真正到达滑块最右（raw >= max）时强制为 max，
+      // 这样「步长不能整除最大值」时余数段也能成为最后一个停靠点
+      // （如 max=1000、step=222：停靠点 0 → 222 → 444 → 666 → 888 → 1000）
+      const snapToStep = (raw: number): number => {
+        if (!hasRange) return raw;
+        let v = rMin + Math.round((raw - rMin) / safeStep + 1e-9) * safeStep;
+        if (v < rMin) v = rMin;
+        if (v > rMax) v = rMax;
+        if (raw >= rMax) v = rMax;
+        return v;
+      };
       return (
         <div className="number-field">
           {hasRange && (
             <input
               type="range"
-              min={variable.min}
-              max={variable.max}
-              step={variable.step ?? 1}
-              value={typeof num === 'number' ? num : (variable.min ?? 0)}
-              onChange={(e) => onChange(Number(e.target.value))}
+              min={rMin}
+              max={rMax}
+              step={safeStep <= 1 ? safeStep : 1}
+              value={typeof num === 'number' ? num : rMin}
+              onChange={(e) => onChange(snapToStep(Number(e.target.value)))}
             />
           )}
           <input
@@ -118,7 +134,7 @@ export function VariableField({ variable, value, onChange, autoFocus }: Props) {
             autoFocus={autoFocus}
             min={variable.min}
             max={variable.max}
-            step={variable.step ?? 1}
+            step={safeStep}
             value={num}
             placeholder={variable.placeholder}
             onChange={(e) => onChange(e.target.value === '' ? '' : Number(e.target.value))}
