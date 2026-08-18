@@ -62,7 +62,7 @@ export interface TemplateVariable {
   offText?: string;
 
   // ---- date ----
-  /** 日期格式：YYYY-MM-DD / YYYY年M月D日 / MM/DD/YYYY */
+  /** 日期格式：YYYY-MM-DD / YYYY年M月D日 / YYYY/MM/DD / YYYY（仅四位年份，不带单位） */
   dateFormat?: string;
 }
 

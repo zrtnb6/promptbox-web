@@ -86,14 +86,14 @@ function parse(content: string): Node[] {
 const DEFAULT_SEPARATOR = '、';
 
 export function formatDate(iso: string, fmt = 'YYYY-MM-DD'): string {
-  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
-  if (!m) return iso;
+  const full = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if (!full) return iso;
   const map: Record<string, string> = {
-    YYYY: m[1],
-    MM: m[2],
-    DD: m[3],
-    M: String(Number(m[2])),
-    D: String(Number(m[3])),
+    YYYY: full[1],
+    MM: full[2],
+    DD: full[3],
+    M: String(Number(full[2])),
+    D: String(Number(full[3])),
   };
   return fmt.replace(/YYYY|MM|DD|M|D/g, (t) => map[t] ?? t);
 }

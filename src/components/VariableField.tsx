@@ -9,6 +9,39 @@ interface Props {
   autoFocus?: boolean;
 }
 
+/** 年份下拉：用于 dateFormat === 'YYYY' 的日期变量，下拉选择四位年份 */
+function YearSelect({ id, value, onChange, autoFocus, required }: {
+  id: string;
+  value: VariableValue;
+  onChange: (value: VariableValue) => void;
+  autoFocus?: boolean;
+  required?: boolean;
+}) {
+  const currentYear = new Date().getFullYear();
+  const start = currentYear - 20;
+  const end = currentYear + 10;
+  const years: number[] = [];
+  for (let y = start; y <= end; y++) years.push(y);
+  // value 可能是完整日期（如「今天」默认值的 2026-08-18）或纯四位年份，统一取前四位年份
+  const rawVal = typeof value === 'string' ? value : '';
+  const yearMatch = /^(\d{4})/.exec(rawVal);
+  const current = yearMatch ? yearMatch[1] : '';
+  return (
+    <select
+      id={id}
+      className="select"
+      autoFocus={autoFocus}
+      value={current}
+      onChange={(e) => onChange(e.target.value)}
+    >
+      {!required && <option value=""> </option>}
+      {years.map((y) => (
+        <option key={y} value={String(y)}>{y}</option>
+      ))}
+    </select>
+  );
+}
+
 /**
  * 运行期变量输入控件 —— 每种变量类型一个分支。
  * 新增变量类型时，在这里补一个 case 即可。
@@ -41,7 +74,7 @@ export function VariableField({ variable, value, onChange, autoFocus }: Props) {
           autoFocus={autoFocus}
           onChange={(e) => onChange(e.target.value)}
         >
-          {!variable.required && <option value="">（不填）</option>}
+          {!variable.required && <option value=""> </option>}
           {options.map((opt) => (
             <option key={opt.id} value={optionValue(opt)}>
               {opt.label}
@@ -148,7 +181,10 @@ export function VariableField({ variable, value, onChange, autoFocus }: Props) {
       );
     }
 
-    case 'date':
+    case 'date': {
+      if (variable.dateFormat === 'YYYY') {
+        return <YearSelect id={id} value={value} onChange={onChange} autoFocus={autoFocus} required={variable.required} />;
+      }
       return (
         <input
           id={id}
@@ -159,6 +195,7 @@ export function VariableField({ variable, value, onChange, autoFocus }: Props) {
           onChange={(e) => onChange(e.target.value)}
         />
       );
+    }
 
     case 'text':
     default:

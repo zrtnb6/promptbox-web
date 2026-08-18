@@ -17,7 +17,7 @@ interface Props {
   onMove: (delta: number) => void;
 }
 
-const DATE_FORMATS = ['YYYY-MM-DD', 'YYYY年M月D日', 'M月D日', 'YYYY/MM/DD'];
+const DATE_FORMATS = ['YYYY-MM-DD', 'YYYY年M月D日', 'YYYY/MM/DD', 'YYYY'];
 
 export function VariableEditor({
   variable,
